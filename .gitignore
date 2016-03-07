@@ -1,0 +1,17 @@
+/web/bower_components/
+/web/bundles/
+/web/ks-adminlte-bundle/
+/web/ks-sbadmin-bundle/
+/app/bootstrap.php.cache
+/app/cache/*
+/app/config/parameters.yml
+/app/config/parameters.yml.dist
+/app/logs/*
+!app/cache/.gitkeep
+!app/logs/.gitkeep
+/app/phpunit.xml
+/build/
+/src/Ks/
+/vendor/
+/bin/
+/find

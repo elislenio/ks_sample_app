@@ -1,0 +1,21 @@
+{% extends 'AppBundle::index.html.twig' %}
+
+{% block content %}	
+	<div class="row">
+		<div class="col-lg-12">
+			<h1 class="page-header"><span>TEST</span></h1>
+		</div>
+		<!-- /.col-lg-12 -->
+	</div>
+	<!-- /.row -->
+	<div class="row">
+		<div class="col-lg-12">
+			{% set property = node.getProperty('text') %}
+			text: {{ property.getString() }}
+			<br>
+			Size of {{ property.getPath() }} is {{ property.getLength() }}
+		</div>
+		<!-- /.col-lg-12 -->
+	</div>
+	<!-- /.row -->
+{% endblock %}

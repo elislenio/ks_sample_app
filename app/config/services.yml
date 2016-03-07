@@ -1,0 +1,39 @@
+services:
+    # authentication success event listener
+    app.security.interactive_login_listener:
+        class: Ks\CoreBundle\Classes\AuthenticationListener
+        arguments: ["@security.token_storage", "@doctrine.dbal.default_connection", "@request_stack"]
+        tags:
+            - { name: kernel.event_listener, event: security.interactive_login, method: onAuthenticationSuccess }
+
+    # authentication failure event listener
+    app.security.authentication_failure_event_listener:
+        class: Ks\CoreBundle\Classes\AuthenticationListener
+        arguments: ["@security.token_storage", "@doctrine.dbal.default_connection", "@request_stack"]
+        tags:
+            - { name: kernel.event_listener, event: security.authentication.failure, method: onAuthenticationFailure }
+
+    # Session handler
+    session.handler.pdo:
+        class:     Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler
+        public:    false
+        arguments:
+            - 'mysql:dbname=%database_name%'
+            - { db_username: '%database_user%', db_password: '%database_password%' }
+
+    # LDAP Client
+    ldap:
+        class: Symfony\Component\Ldap\LdapClient
+        arguments: [ "localhost" ]
+
+    # logger
+    monolog.formatter.session_request:
+        class: Monolog\Formatter\LineFormatter
+        arguments:
+            - "[%%datetime%%] [%%extra.token%%] %%channel%%.%%level_name%%: %%message%% %%context%% %%extra%%\n"
+
+    monolog.processor.session_request:
+        class: Ks\CoreBundle\SessionRequestProcessor
+        arguments:  ['@session']
+        tags:
+            - { name: monolog.processor, method: processRecord }

@@ -1,0 +1,54 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/book/security.html
+security:
+
+    encoders:
+        Ks\CoreBundle\Entity\User:
+            algorithm: bcrypt
+
+    providers:
+        ks_user:
+            entity:
+                class: KsCoreBundle:User
+        in_memory:
+            memory: ~
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            pattern: ^/
+            anonymous: true
+            user_checker: ks.core.user_checker
+
+            # Local user auth
+            # set this if ks_core->pwd_management: local
+            form_login:
+                provider: ks_user
+                login_path: login
+                check_path: login_check
+                csrf_token_generator: security.csrf.token_manager
+
+            # Mixed auth: local users with LDAP passwords
+            # set this if ks_core->pwd_management: external
+            #simple_form:
+            #    provider: ks_user
+            #    authenticator: ks.core.ldap_authenticator
+            #    login_path: login
+            #    check_path: login_check
+            #    csrf_token_generator: security.csrf.token_manager
+
+            logout:
+                path:   logout
+                target: login
+
+    acl:
+        connection: default
+
+    # Permissions are managed by the App using ACL
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/pwdchange$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, role: IS_AUTHENTICATED_REMEMBERED }

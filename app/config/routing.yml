@@ -1,0 +1,14 @@
+ks_admin_lte_theme:
+    resource: "../../src/Ks/AdminLteThemeBundle/Controller/"
+    type:     annotation
+
+#sb_admin_theme:
+#    resource: "../../src/Ks/SbAdminThemeBundle/Controller/"
+#    type:     annotation
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+
+logout:
+    path: /logout
