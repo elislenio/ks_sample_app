@@ -1,6 +1,6 @@
 {
-    "name": "guido/my_project_name",
-    "license": "proprietary",
+    "name": "ks_sample_app",
+    "license": "MIT",
     "type": "project",
     "autoload": {
         "psr-4": {
@@ -11,21 +11,21 @@
         ]
     },
 	"require": {
-        "php": ">=5.3.9",
-        "symfony/symfony": "2.8.*",
-        "doctrine/orm": "^2.4.8",
-        "doctrine/doctrine-bundle": "~1.4",
-        "symfony/swiftmailer-bundle": "~2.3",
-        "symfony/monolog-bundle": "~2.4",
-        "sensio/distribution-bundle": "~5.0",
-        "sensio/framework-extra-bundle": "^3.0.2",
-        "incenteev/composer-parameter-handler": "~2.0",
-        "stof/doctrine-extensions-bundle": "^1.2",
-		"knplabs/knp-menu-bundle": "^2.0"
+        "php": ">=5.3.9-stable",
+        "symfony/symfony": "~2.8.*-stable",
+        "doctrine/orm": "^2.4.8-stable",
+        "doctrine/doctrine-bundle": "~1.4-stable",
+        "symfony/swiftmailer-bundle": "~2.3-stable",
+        "symfony/monolog-bundle": "~2.4-stable",
+        "sensio/distribution-bundle": "~5.0-stable",
+        "sensio/framework-extra-bundle": "^3.0.2-stable",
+        "incenteev/composer-parameter-handler": "~2.0-stable",
+        "stof/doctrine-extensions-bundle": "^1.2-stable",
+		"knplabs/knp-menu-bundle": "^2.0-stable"
     },
     "require-dev": {
-        "sensio/generator-bundle": "~3.0",
-        "symfony/phpunit-bridge": "~2.7"
+        "sensio/generator-bundle": "~3.0-stable",
+        "symfony/phpunit-bridge": "~2.7-stable"
     },
     "scripts": {
         "post-install-cmd": [
@@ -46,7 +46,10 @@
         ]
     },
     "config": {
-        "bin-dir": "bin"
+        "bin-dir": "bin",
+		"preferred-install": {
+            "*": "dist"
+        }
     },
     "extra": {
         "symfony-app-dir": "app",
