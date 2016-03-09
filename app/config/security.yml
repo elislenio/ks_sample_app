@@ -21,25 +21,12 @@ security:
         main:
             pattern: ^/
             anonymous: true
-            user_checker: ks.core.user_checker
-
-            # Local user auth
-            # set this if ks_core->pwd_management: local
-            form_login:
+            simple_form:
                 provider: ks_user
+                authenticator: ks.core.ks_authenticator
                 login_path: login
                 check_path: login_check
                 csrf_token_generator: security.csrf.token_manager
-
-            # Mixed auth: local users with LDAP passwords
-            # set this if ks_core->pwd_management: external
-            #simple_form:
-            #    provider: ks_user
-            #    authenticator: ks.core.ldap_authenticator
-            #    login_path: login
-            #    check_path: login_check
-            #    csrf_token_generator: security.csrf.token_manager
-
             logout:
                 path:   logout
                 target: login
