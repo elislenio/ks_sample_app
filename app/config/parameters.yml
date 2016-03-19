@@ -1,0 +1,13 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: sf_kickstart
+    database_user: sf_kickstart
+    database_password: sf_kickstart
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    secret: 02403656d66e9ac4b7af2b24a862cd9b9b66c469

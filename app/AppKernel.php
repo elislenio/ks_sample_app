@@ -17,11 +17,9 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 			new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
 			new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-			//new Doctrine\Bundle\PHPCRBundle\DoctrinePHPCRBundle(),
 			new Ks\CoreBundle\KsCoreBundle(),
-			//new Ks\SbAdminThemeBundle\KsSbAdminThemeBundle(),
 			new Ks\AdminLteThemeBundle\KsAdminLteThemeBundle(),
-            new AppBundle\AppBundle(),
+            new AppBundle\AppBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
@@ -29,6 +27,7 @@ class AppKernel extends Kernel
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
+			$bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
         }
 
         return $bundles;
