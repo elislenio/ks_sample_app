@@ -31,9 +31,6 @@ security:
                 path:   logout
                 target: login
 
-    acl:
-        connection: default
-
     # Permissions are managed by the App using ACL
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }

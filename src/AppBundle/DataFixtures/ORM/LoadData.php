@@ -44,12 +44,12 @@ class LoadData implements FixtureInterface, ContainerAwareInterface
 			->setDescription('Administración de los menus de la aplicación');
 		$ac_model->insert($menus);
 		
-		// PERMISSIONS
-		$permissions = new AccessControl();
-		$permissions
-			->setId('PERMISSIONS')
+		// REP_ACL
+		$rep_acl = new AccessControl();
+		$rep_acl
+			->setId('REP_ACL')
 			->setDescription('Reporte de permisos de acceso');
-		$ac_model->insert($permissions);
+		$ac_model->insert($rep_acl);
 		
 		// REP_AUDIT
 		$rep_audit = new AccessControl();
@@ -168,7 +168,7 @@ class LoadData implements FixtureInterface, ContainerAwareInterface
 			->setIcon('fa fa-key fa-fw')
 			->setIsBranch(false)
 			->setVisible(true)
-			->setAcId('PERMISSIONS')
+			->setAcId('REP_ACL')
 			->setMask(MaskBuilder::MASK_VIEW)
 			;
 		$menu_model->insertItem($main, $permisos);
@@ -189,12 +189,12 @@ class LoadData implements FixtureInterface, ContainerAwareInterface
 			;
 		$menu_model->insertItem($main, $user_roles);
 		
-		// Pista de Auditoría
+		// Reporte de Auditoría
 		$rep_audit = new MenuItem();
 		$rep_audit
 			->setMenuId($main->getId())
 			->setParentId($reportes->getId())
-			->setLabel('Pista de Auditoría')
+			->setLabel('Reporte de Auditoría')
 			->setRoute('rep_audit')
 			->setItemOrder(3)
 			->setIcon('fa fa-eye fa-fw')
@@ -318,7 +318,7 @@ class LoadData implements FixtureInterface, ContainerAwareInterface
 		$admin_acl_6 = new AccessControlList();
 		$admin_acl_6
 			->setRoleId($admin->getId())
-			->setAcId('PERMISSIONS')
+			->setAcId('REP_ACL')
 			->setMaskView(true)
 			->setMaskCreate(false)
 			->setMaskEdit(false)
