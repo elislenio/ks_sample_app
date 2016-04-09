@@ -13,6 +13,7 @@ use Ks\CoreBundle\Entity\Role;
 use Ks\CoreBundle\Entity\AccessControlList;
 use Ks\CoreBundle\Entity\User;
 use Ks\CoreBundle\Entity\UserRole;
+use Ks\CoreBundle\Entity\Parameter;
 
 class LoadData implements FixtureInterface, ContainerAwareInterface
 {
@@ -30,6 +31,14 @@ class LoadData implements FixtureInterface, ContainerAwareInterface
 	private function loadFunctions()
 	{
 		$ac_model = $this->container->get('ks.core.ac_model');
+		
+		// PARAMETERS
+		$parameters = new AccessControl();
+		$parameters
+			->setId('PARAMETERS')
+			->setDescription('Administración de Parametros');
+		$ac_model->insert($parameters);
+		
 		// ACCESS_CONTROL
 		$access_control = new AccessControl();
 		$access_control
@@ -221,6 +230,22 @@ class LoadData implements FixtureInterface, ContainerAwareInterface
 			;
 		$menu_model->insertItem($main, $config);
 		
+		// Parametros
+		$parametros = new MenuItem();
+		$parametros
+			->setMenuId($main->getId())
+			->setParentId($config->getId())
+			->setLabel('Parametros')
+			->setRoute('parameters')
+			->setItemOrder(1)
+			->setIcon('fa fa-wrench fa-fw')
+			->setIsBranch(false)
+			->setVisible(true)
+			->setAcId('PARAMETERS')
+			->setMask(MaskBuilder::MASK_VIEW)
+			;
+		$menu_model->insertItem($main, $parametros);
+		
 		// Menus
 		$menus = new MenuItem();
 		$menus
@@ -228,7 +253,7 @@ class LoadData implements FixtureInterface, ContainerAwareInterface
 			->setParentId($config->getId())
 			->setLabel('Menus')
 			->setRoute('menus')
-			->setItemOrder(1)
+			->setItemOrder(2)
 			->setIcon('fa fa-list fa-fw')
 			->setIsBranch(false)
 			->setVisible(true)
@@ -244,7 +269,7 @@ class LoadData implements FixtureInterface, ContainerAwareInterface
 			->setParentId($config->getId())
 			->setLabel('Funciones')
 			->setRoute('acs')
-			->setItemOrder(2)
+			->setItemOrder(3)
 			->setIcon('fa fa-circle fa-fw')
 			->setIsBranch(false)
 			->setVisible(true)
